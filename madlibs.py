@@ -53,13 +53,16 @@ def show_madlib_form():
 def show_madlib():
     """Show madlib"""
 
-    color = request.args.get("color")
+    colors = request.args.getlist("color")
+    print request.args
     noun = request.args.get("noun")
     person = request.args.get("victim-name")
     adjective = request.args.get("adjective")
 
-    return render_template("madlib.html",
-                            color=color,
+    html_picker = choice(["madlib.html", "madlib2.html"])
+
+    return render_template(html_picker,
+                            colors=colors,
                             noun=noun,
                             person=person,
                             adjective=adjective)
